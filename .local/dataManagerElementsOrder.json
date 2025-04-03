@@ -1,0 +1,30 @@
+{
+  "Workflows": [
+    {
+      "Path": null,
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Main.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "poDetails&Sequence_2",
+        "itemDetails&Sequence_2",
+        "billNo&Sequence_2",
+        "plantName&Sequence_2",
+        "isFirstLine&Sequence_2",
+        "hsnCode&Sequence_2",
+        "itemNumber&Sequence_2",
+        "RowNumber&Sequence_2",
+        "itemCount&Sequence_12"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    }
+  ]
+}

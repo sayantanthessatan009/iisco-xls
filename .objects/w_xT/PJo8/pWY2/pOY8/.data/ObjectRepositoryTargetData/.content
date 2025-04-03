@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="P9bHFyIvS02XavLB7PcxYw" Reference="UDvmrGuPi0y509F4-Wjpcg/pOY8iws1tU29TqV1VE89aQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" CVScreenId="c70eb09d-c26c-4b3d-bd22-eadd9efd06b6" CvTextArea="102, 332, 127, 13" CvTextArgument="Invoice Date: 01/03/2024" CvType="Text" DesignTimeRectangle="101, 332, 128, 13" DesignTimeScaleFactor="1" FullSelectorArgument="&lt;uia cls='EXCEL6' /&gt;" FuzzySelectorArgument="&lt;uia cls='EXCEL6' role='pane' automationid='' /&gt;" Guid="8991427e-0270-453e-8545-3699b38a7961" ScopeSelectorArgument="&lt;wnd app='excel.exe' cls='XLMAIN' title='IISCO BILL FORMAT.xlsm - Excel' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="22d1f2ad-e280-4de6-9762-23634615cac6" CvTextArea="600, 332, 107, 11" CvTextArgument="CHALLAN DATED: NA" CvType="Text" DesignTimeRectangle="599, 330, 378, 17" ElementType="Cell" FullSelectorArgument="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='L12' cls='XLSpreadsheetCell' name='L12' tableRow='4' /&gt;" FuzzySelectorArgument="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='L12' cls='XLSpreadsheetCell' name='L12' role='item' /&gt;" Guid="02b20d22-a219-43cf-8853-caf012554993" SearchSteps="Selector, FuzzySelector, CV" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="7c71e62c4dea26ca8a8ee6aa99a29f17.png" xmlns="">0h32ct2ldo0m50WrPocWLQA</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">None</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>
