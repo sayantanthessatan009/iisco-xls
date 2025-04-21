@@ -1,0 +1,14 @@
+﻿{
+  "Name": "File Tab",
+  "Type": "Element",
+  "TaxonomyType": "Button",
+  "Id": "W6mITZnaa0q2Njzqeca8iQ",
+  "Reference": "UDvmrGuPi0y509F4-Wjpcg/W6mITZnaa0q2Njzqeca8iQ",
+  "ParentRef": "UDvmrGuPi0y509F4-Wjpcg/pWY2g--5wkuKhJS9vBTs6A",
+  "Created": "2025-04-08T11:58:37.2118201Z",
+  "Updated": "2025-04-08T11:58:37.2118201Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.2.1.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=24.12.3.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

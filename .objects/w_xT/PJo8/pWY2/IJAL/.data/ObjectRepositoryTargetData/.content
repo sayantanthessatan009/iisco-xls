@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="KN6-MBbqxU6OL5aWOBHLwg" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" CVScreenId="807449d2-c56b-4624-9cfe-ec3440553518" CvTextArea="241, 468, 50, 14" CvTextArgument="Browse" CvType="Text" DesignTimeRectangle="189, 453, 279, 44" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;uia cls='NetUIElement' name='Save As' /&gt;&lt;uia automationid='SaveGroup' cls='NetUISlabContainer' name='Saving Features' /&gt;&lt;uia cls='NetUIElement' /&gt;&lt;uia cls='NetUISimpleButton' name='Browse' /&gt;" FuzzySelectorArgument="&lt;uia cls='NetUIElement' name='Save As' /&gt;&lt;uia automationid='SaveGroup' cls='NetUISlabContainer' name='Saving Features' /&gt;&lt;uia cls='NetUIElement' /&gt;&lt;uia cls='NetUISimpleButton' name='Browse' role='Button' automationid='' check:fulltext='Browse' /&gt;" Guid="a7d62e78-ac46-4600-a7db-40f14c0ee4c1" ScopeSelectorArgument="&lt;wnd app='excel.exe' cls='XLMAIN' title='IISCO BILL FORMAT.xlsm - Excel' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="807449d2-c56b-4624-9cfe-ec3440553518" CvTextArea="240, 421, 81, 14" CvTextArgument="Add a Place" CvType="Text" DesignTimeRectangle="189, 406, 279, 44" ElementType="Button" FullSelectorArgument="&lt;uia cls='NetUIElement' name='Save As' /&gt;&lt;uia automationid='SaveGroup' cls='NetUISlabContainer' name='Saving Features' /&gt;&lt;uia cls='NetUIElement' /&gt;&lt;uia cls='NetUISimpleButton' name='Add a Place' /&gt;" FuzzySelectorArgument="&lt;uia cls='NetUIElement' name='Save As' /&gt;&lt;uia automationid='SaveGroup' cls='NetUISlabContainer' name='Saving Features' /&gt;&lt;uia cls='NetUIElement' /&gt;&lt;uia cls='NetUISimpleButton' name='Add a Place' role='Tab Item' automationid='' check:fulltext='Add a Place' /&gt;" Guid="571a7f3e-267f-4586-8f73-c73042753c1d" SearchSteps="Selector, FuzzySelector, CV" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="6c63665e00de6e55630aa12c02872256.png" xmlns="">0MvNp6dwqYU2SyVAB6qOSjg</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

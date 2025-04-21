@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="hrgRrWTGq0GL8yqOfPxS_g" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" CVScreenId="bd35883d-0ef6-484d-b2f0-9a163c69d828" CvTextArea="434, 419, 112, 9" CvTextArgument="6STIM: 19AAACS7O62F6Z6" CvType="Text" DesignTimeRectangle="433, 419, 370, 12" DesignTimeScaleFactor="1" ElementType="Cell" FullSelectorArgument="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='J21' cls='XLSpreadsheetCell' name='J21' tableRow='21' /&gt;" FuzzySelectorArgument="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='J21' cls='XLSpreadsheetCell' name='J21' role='item' /&gt;" Guid="f459bd28-a620-4e50-82be-48a06e8cddf4" ScopeSelectorArgument="&lt;wnd app='excel.exe' cls='XLMAIN' title='IISCO BILL FORMAT.xlsm - Excel' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <imageRef attrName="InformativeScreenshot" originalValue="1330d2e4274f407f9c2cba07ebe17c53.png" xmlns="">0jgD0YlTjlUSBZODue4VGZQ</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">TypeInto</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

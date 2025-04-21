@@ -1,0 +1,13 @@
+﻿{
+  "Name": "Cell",
+  "Type": "Element",
+  "Id": "voDPG_gkh0m_N7_eVqjLLw",
+  "Reference": "UDvmrGuPi0y509F4-Wjpcg/voDPG_gkh0m_N7_eVqjLLw",
+  "ParentRef": "UDvmrGuPi0y509F4-Wjpcg/pWY2g--5wkuKhJS9vBTs6A",
+  "Created": "2025-04-07T11:05:42.2936939Z",
+  "Updated": "2025-04-07T11:05:42.2936939Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.2.1.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=24.12.3.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

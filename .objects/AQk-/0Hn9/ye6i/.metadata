@@ -1,0 +1,13 @@
+﻿{
+  "Name": "AMOUNT.txt - Notepad",
+  "Type": "Screen",
+  "Id": "ye6i5jQzfEaxQ8tsG8_SVg",
+  "Reference": "UDvmrGuPi0y509F4-Wjpcg/ye6i5jQzfEaxQ8tsG8_SVg",
+  "ParentRef": "UDvmrGuPi0y509F4-Wjpcg/0Hn93sX4R02q7cVVc9H2uQ",
+  "Created": "2025-04-11T10:52:12.8161072Z",
+  "Updated": "2025-04-11T10:52:12.8161072Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=25.2.1.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=24.12.3.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

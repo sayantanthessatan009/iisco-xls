@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="rvn4VvB-FkKqSgZN0lJ8Mg" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" CVScreenId="8c8d56a3-c50e-4f85-831c-44ff69c0413c" CvTextArea="75, 601, 386, 9" CvTextArgument="LAX# AMNET THGUSAAD EIGW7 MUNDRED FIFTY THREE AAD PAASE EAGT#Y" CvType="Text" DesignTimeRectangle="71, 596, 398, 23" DesignTimeScaleFactor="1" ElementType="Cell" FuzzySelectorArgument="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='D33' cls='XLSpreadsheetCell' name='D33' role='item' /&gt;" Guid="fe703d5b-21ee-4189-ada1-bf896b63d7dd" ScopeSelectorArgument="&lt;wnd app='excel.exe' cls='XLMAIN' title='IISCO BILL FORMAT.xlsm - Excel' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="8c8d56a3-c50e-4f85-831c-44ff69c0413c" CvTextArea="471, 596, 47, 9" CvTextArgument="Add: GS7" CvType="Text" DesignTimeRectangle="469, 596, 187, 12" ElementType="Cell" FullSelectorArgument="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='K33' cls='XLSpreadsheetCell' name='K33' tableRow='33' /&gt;" FuzzySelectorArgument="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='K33' cls='XLSpreadsheetCell' name='K33' role='item' /&gt;" Guid="325e8894-1c26-4621-9a6a-cb6f01fb6614" SearchSteps="Selector, FuzzySelector, CV" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="e81ca78aa986dc280016656361be6e80.png" xmlns="">0Hz32Y8ALnEWz7djZuBDxow</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">TypeInto</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="e7k3gHFJoEKte-o8CsR4IQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" CVScreenId="d96a2623-a356-4136-9cb1-a743364a12b2" CvTextArea="77, 272, 7, 8" CvTextArgument="," CvType="Text" DesignTimeRectangle="71, 253, 20, 48" DesignTimeScaleFactor="1" ElementType="Cell" FuzzySelectorArgument="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='D26' cls='XLSpreadsheetCell' name='D26' role='item' /&gt;" Guid="1baa86d6-fde7-4950-a106-e399c51ee9fd" ScopeSelectorArgument="&lt;wnd app='excel.exe' cls='XLMAIN' title='IISCO BILL FORMAT.xlsm - Excel' /&gt;" SearchSteps="FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target DesignTimeRectangle="71, 230, 20, 23" ElementType="Cell" FullSelectorArgument="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='D24' cls='XLSpreadsheetCell' name='D24' tableRow='3' /&gt;" FuzzySelectorArgument="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='D24' cls='XLSpreadsheetCell' name='D24' role='item' /&gt;" Guid="5d79a7fa-9f34-4e61-acdb-725d4f6d5cbe" SearchSteps="Selector, FuzzySelector" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="752151637ded7898b84e6a5f8b7552ba.png" xmlns="">0qr2Hc5M3zkC8yxI7WpiRPg</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">None</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

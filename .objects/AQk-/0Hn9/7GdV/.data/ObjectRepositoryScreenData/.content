@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryScreenData ContentHash="a0LwJtzvWk-1l5b5wAWnJQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryScreenData.Data>
+    <TargetApp x:Key="TargetApp" Area="129, 193, 800, 480" FilePath="C:\Windows\System32\notepad.exe" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKESURBVDhPjZLLTxNRFMbZm7j2/zG6cCNq4t6dcWdINJEQmsgjlDcIRJACUgoRpbGEgoKVQl90Om1pO51HpzN9twNtsXEtn2cGpTay4CQnZ3Jv7u/7zjnTdlV0T87iOvW/mIspibsPHyNQrOLO/UdwZTSjfk4VjWrlskYdCnAY9kRhNbeb/jxta/MVqzdHQlJZrv8EX20gqp3hqFSDO3+KHbUCO0FWklnMxxT0uMMYPIxgvOdJ0wld3p6JyoJUa4A7aSBcrsNXqMKV1bCVLuGTlMdyMoPZaBqmbwzmQ3wrgB732pLZg4CSx2E6B5eUgTOpwB5PYTUiYIFNYjoQN5Sfb+xijeVaAaOstOeQi/bYyQ+wlTr8ZH8/p2FbLZP9Amw82Y+rGGdT6Ng8QLRSawWYg4K6q2oWt5zDnnihvkHqaxERiyxP6gmMemN4vc/iqW0LqlZtAoYY8cYgI2Y306WFYLkGb+HU6N2pkLp0oW6JK5iKpNHnT+Cl04Nf5+dNwDAj3nsTkcPrYn7xi6DCwaXxMSbBRr1bQnrvpO45Ru9BGK+cXnQ6vqPeaDQBpG6m9WxbucySu3CCr5kKNuUS1mnyVpr8u5iKyXAKA4yAbheLKX8celwC+o/4w2V6TJD39oSMD8cSlsM85kIcpmjyw7o67b5zL4QOuwtLgeNWB70BXrXE1enpSNrqVErYoL5X+RwWEhnQekEbQv+RgC6P3r8XDLm8dGDycbcGgoJEgBn6lVf+9q5P/m2Qw4QvhkFy0EcOulwMnq06IZa0pgMCPOgJJEEQQ2mceh2jXY/R94ieIRETdKbnCCPixY7fUNfjsoV/I6VkDPp18koAHTr0i+uk1dxu+g2Vkq+4mslZTwAAAABJRU5ErkJggg==" Selector="&lt;wnd app='notepad.exe' cls='#32770' title='Save As' /&gt;" Version="V2">
+      <imageRef attrName="InformativeScreenshot" originalValue="69da4a031088fd50f881b8c224e87a8f.png" xmlns="">0CqRCDcfwc02sI8OLeJUtjQ</imageRef>
+    </TargetApp>
+  </ObjectRepositoryScreenData.Data>
+</ObjectRepositoryScreenData>

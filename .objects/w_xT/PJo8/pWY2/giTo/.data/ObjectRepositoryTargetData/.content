@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="JVveup5GMUaa2uPO9h6OSQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" CVScreenId="5105f85f-f129-4311-96c6-a20d06e57d92" CvTextArea="72, 315, 129, 10" CvTextArgument="latoice No: PSMC/25-26/16" CvType="Text" DesignTimeRectangle="71, 315, 361, 11" DesignTimeScaleFactor="1" FullSelectorArgument="&lt;uia cls='EXCEL6' /&gt;" FuzzySelectorArgument="&lt;uia cls='EXCEL6' role='pane' automationid='' /&gt;" Guid="8e8f1c53-3104-4d09-92e2-30e15481af0f" ScopeSelectorArgument="&lt;wnd app='excel.exe' cls='XLMAIN' title='IISCO BILL FORMAT.xlsm - Excel' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="5105f85f-f129-4311-96c6-a20d06e57d92" CvTextArea="434, 314, 83, 10" CvTextArgument="CHALLAN NO: NA" CvType="Text" DesignTimeRectangle="433, 315, 370, 12" ElementType="Cell" FullSelectorArgument="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='J11' cls='XLSpreadsheetCell' name='J11' tableRow='11' /&gt;" FuzzySelectorArgument="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='J11' cls='XLSpreadsheetCell' name='J11' role='item' /&gt;" Guid="def3ab15-6738-49b5-8a71-4230eaea5d91" SearchSteps="Selector, FuzzySelector, CV" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="8ef20a37898315bacae5caad7fbbc3fa.png" xmlns="">0PDxA-tceU0yt-Rp_yyghng</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">None</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

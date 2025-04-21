@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="jb4OtQOfjUumoIB2HeuQUQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" CVScreenId="225c58b1-f0d3-46ca-bc97-57e9c27a229a" CvTextArea="51, 360, 42, 12" CvTextArgument="Save As" CvType="Text" DesignTimeRectangle="8, 346, 140, 40" DesignTimeScaleFactor="1" ElementType="ListItem" FullSelectorArgument="&lt;uia automationid='NavBarMenu' cls='NetUIKeyboardTabElement' name='File' /&gt;&lt;uia cls='NetUIRibbonTab' name='Save As' /&gt;" FuzzySelectorArgument="&lt;uia automationid='NavBarMenu' cls='NetUIKeyboardTabElement' name='File' /&gt;&lt;uia cls='NetUIRibbonTab' name='Save As' role='List Item' automationid='' check:fulltext='Save As' /&gt;" Guid="91a7a96c-cf37-4f7e-be06-28e0a02e39aa" ScopeSelectorArgument="&lt;wnd app='excel.exe' cls='XLMAIN' title='IISCO BILL FORMAT.xlsm - Excel' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V5" Visibility="Interactive">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target CVScreenId="225c58b1-f0d3-46ca-bc97-57e9c27a229a" CvTextArea="50, 320, 27, 12" CvTextArgument="Save" CvType="Text" DesignTimeRectangle="8, 306, 140, 40" ElementType="ListItem" FullSelectorArgument="&lt;uia automationid='NavBarMenu' cls='NetUIKeyboardTabElement' name='File' /&gt;&lt;uia cls='NetUIOutSpaceButton' name='Save' /&gt;" FuzzySelectorArgument="&lt;uia automationid='NavBarMenu' cls='NetUIKeyboardTabElement' name='File' /&gt;&lt;uia cls='NetUIOutSpaceButton' name='Save' role='List Item' automationid='' check:fulltext='Save' /&gt;" Guid="75ce0cc0-b14f-4448-a3e1-9c4712067aef" SearchSteps="Selector, FuzzySelector, CV" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="b920b7b88dfe6652224e556dcf80c83b.png" xmlns="">0nVX4BIO-i06BduUo9ShcPw</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>
