@@ -129,7 +129,7 @@
       <x:Boolean x:Key="ShouldExpandAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="956,31970" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="956,33472" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="poDetails" />
       <Variable x:TypeArguments="sd:DataTable" Name="itemDetails" />
@@ -160,11 +160,17 @@
       <Variable x:TypeArguments="x:String" Name="freightColumn" />
       <Variable x:TypeArguments="x:String" Name="forwardingColumn" />
       <Variable x:TypeArguments="x:String" Name="packingColumn" />
-      <Variable x:TypeArguments="x:String" Name="poNumberColumn" />
-      <Variable x:TypeArguments="x:String" Name="poDateColumn" />
+      <Variable x:TypeArguments="x:Int32" Name="poNumberColumnIndex" />
+      <Variable x:TypeArguments="x:Int32" Name="poDateColumnIndex" />
       <Variable x:TypeArguments="x:String" Name="plantKey" />
       <Variable x:TypeArguments="sd:DataRow" Name="matchPo" />
       <Variable x:TypeArguments="sd:DataTable" Name="details" />
+      <Variable x:TypeArguments="x:String" Name="poNumberValue" />
+      <Variable x:TypeArguments="x:String" Name="poDateValue" />
+      <Variable x:TypeArguments="x:String" Name="ClientGSTIN" />
+      <Variable x:TypeArguments="x:String" Name="ShippingAddress" />
+      <Variable x:TypeArguments="x:String" Name="BillingAddress" />
+      <Variable x:TypeArguments="x:String" Name="switchPlant" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -188,7 +194,20 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:MessageBox>
-    <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[plantName.Trim.ToUpper]" sap:VirtualizedContainerService.HintSize="624,1391" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+    <Assign sap:VirtualizedContainerService.HintSize="624,114" sap2010:WorkflowViewState.IdRef="Assign_44">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[switchPlant]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[If(plantName.ToString.ToUpper.StartsWith("TATA STEEL"), "TATA STEEL", plantName)]</InArgument>
+      </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Assign>
+    <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[switchPlant]" sap:VirtualizedContainerService.HintSize="624,1391" sap2010:WorkflowViewState.IdRef="Switch`1_1">
       <Switch.Default>
         <Sequence DisplayName="Default" sap:VirtualizedContainerService.HintSize="416,168" sap2010:WorkflowViewState.IdRef="Sequence_76">
           <sap:WorkflowViewStateService.ViewState>
@@ -291,7 +310,7 @@
           </sap:WorkflowViewStateService.ViewState>
         </ui:ReadRange>
       </Sequence>
-      <Sequence x:Key="plantName.ToUpper.StartsWith(&quot;TATA STEEL LIMITED&quot;)" DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,171" sap2010:WorkflowViewState.IdRef="Sequence_80">
+      <Sequence x:Key="TATA STEEL" DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,171" sap2010:WorkflowViewState.IdRef="Sequence_80">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -312,7 +331,7 @@
         </ui:ReadRange>
       </Sequence>
     </Switch>
-    <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[plantName]" sap:VirtualizedContainerService.HintSize="624,1391" sap2010:WorkflowViewState.IdRef="Switch`1_3">
+    <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[switchPlant]" sap:VirtualizedContainerService.HintSize="624,1391" sap2010:WorkflowViewState.IdRef="Switch`1_3">
       <Switch.Default>
         <Sequence DisplayName="Default" sap:VirtualizedContainerService.HintSize="416,168" sap2010:WorkflowViewState.IdRef="Sequence_101">
           <sap:WorkflowViewStateService.ViewState>
@@ -415,14 +434,14 @@
           </sap:WorkflowViewStateService.ViewState>
         </ui:ReadRange>
       </Sequence>
-      <Sequence x:Key="plantName.ToUpper.StartsWith(&quot;TATA STEEL LIMITED&quot;)" DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,171" sap2010:WorkflowViewState.IdRef="Sequence_100">
+      <Sequence x:Key="TATA STEEL" DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,171" sap2010:WorkflowViewState.IdRef="Sequence_100">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:ReadRange WorkbookPathResource="{x:Null}" AddHeaders="True" DataTable="[poDetails]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="382,111" sap2010:WorkflowViewState.IdRef="ReadRange_15" SheetName="Sheet1" WorkbookPath="G:\tat-pos-pdfs\PO_Database.xlsx">
+        <ui:ReadRange WorkbookPathResource="{x:Null}" AddHeaders="True" DataTable="[poDetails]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="382,111" sap2010:WorkflowViewState.IdRef="ReadRange_15" SheetName="Sheet1" WorkbookPath="C:\Users\User\Documents\PO_Database.xlsx">
           <ui:ReadRange.Range>
             <InArgument x:TypeArguments="x:String">
               <Literal x:TypeArguments="x:String" Value="" />
@@ -436,25 +455,26 @@
         </ui:ReadRange>
       </Sequence>
     </Switch>
-    <Assign sap:VirtualizedContainerService.HintSize="624,114" sap2010:WorkflowViewState.IdRef="Assign_41">
-      <Assign.To>
-        <OutArgument x:TypeArguments="sd:DataRow">[matchPo]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="sd:DataRow">[(From row In poDetails.AsEnumerable() Where row(0).ToString().Trim().ToLower() = plantName.Trim().ToLower() Select row).FirstOrDefault()]</InArgument>
-      </Assign.Value>
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="624,117" sap2010:WorkflowViewState.IdRef="MessageBox_10" Text="[plantName]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsPinned">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-    </Assign>
+    </ui:MessageBox>
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="624,117" sap2010:WorkflowViewState.IdRef="MessageBox_11" Text="[switchPlant]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:MessageBox>
     <Assign sap:VirtualizedContainerService.HintSize="624,114" sap2010:WorkflowViewState.IdRef="Assign_38">
       <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[poNumberColumn]</OutArgument>
+        <OutArgument x:TypeArguments="x:Int32">[poNumberColumnIndex]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[poDetails.Columns.Cast(Of DataColumn).Where(Function(c) (c.ColumnName.ToLower.Contains("po") Or c.ColumnName.ToLower.Contains("order")) And (c.ColumnName.ToLower.Contains("no") Or c.ColumnName.ToLower.Contains("number"))).First.ColumnName]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" xml:space="preserve">[poDetails.Columns.Cast(Of DataColumn)().ToList().FindIndex(Function(col) col.ColumnName.ToUpper().Contains("PO") Or  col.ColumnName.ToUpper().Contains("ORDER") AndAlso Not col.ColumnName.ToUpper().Contains("DATE"))]</InArgument>
       </Assign.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -464,10 +484,10 @@
     </Assign>
     <Assign sap:VirtualizedContainerService.HintSize="624,114" sap2010:WorkflowViewState.IdRef="Assign_39">
       <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[poDateColumn]</OutArgument>
+        <OutArgument x:TypeArguments="x:Int32">[poDateColumnIndex]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[poDetails.Columns.Cast(Of DataColumn).Where(Function(c) c.ColumnName.ToLower.Contains("date")).First.ColumnName]</InArgument>
+        <InArgument x:TypeArguments="x:Int32">[poDetails.Columns.Cast(Of DataColumn)().ToList().FindIndex(Function(col) col.ColumnName.ToUpper().Contains("DATE"))]</InArgument>
       </Assign.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -475,23 +495,43 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="624,117" sap2010:WorkflowViewState.IdRef="MessageBox_4" Text="[&quot;PO NO: &quot; &amp; matchPo(poNumberColumn).ToString().Trim() &amp; &quot; PO Dated: &quot; &amp; CDate(matchedRow(poDateColumn)).ToString(&quot;dd-MM-yyyy&quot;)]">
+    <Assign sap:VirtualizedContainerService.HintSize="624,114" sap2010:WorkflowViewState.IdRef="Assign_42">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[poNumberValue]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[If(poNumberColumnIndex &gt;= 0 AndAlso poDetails.Rows.Count &gt; 0, poDetails.Rows(0)(poNumberColumnIndex).ToString(), "N/A")]</InArgument>
+      </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="624,114" sap2010:WorkflowViewState.IdRef="Assign_43">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[poDateValue]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[If(poDateColumnIndex &gt;= 0 AndAlso poDetails.Rows.Count &gt; 0, poDetails.Rows(0)(poDateColumnIndex).ToString(), "N/A")]</InArgument>
+      </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Assign>
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="624,117" sap2010:WorkflowViewState.IdRef="MessageBox_4" Text="[&quot;PO Number: &quot; + poNumberValue + Environment.NewLine + &quot;PO Date: &quot; + poDateValue]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsPinned">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:MessageBox>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="624,282" sap2010:WorkflowViewState.IdRef="CommentOut_6">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="624,57" sap2010:WorkflowViewState.IdRef="CommentOut_7">
       <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,171" sap2010:WorkflowViewState.IdRef="Sequence_81">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              <x:Boolean x:Key="IsPinned">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:ReadRange WorkbookPathResource="{x:Null}" AddHeaders="True" DataTable="[itemDetails]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="416,111" sap2010:WorkflowViewState.IdRef="ReadRange_3" SheetName="Item Details" WorkbookPath="C:\Users\User\Desktop\ISP_PO_EXTRACTED\PO_Extracted_Data.xlsx">
+        <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_102">
+          <ui:ReadRange WorkbookPathResource="{x:Null}" AddHeaders="True" DataTable="[itemDetails]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="624,120" sap2010:WorkflowViewState.IdRef="ReadRange_17" SheetName="Item Details" WorkbookPath="C:\Users\User\Desktop\ISP_PO_EXTRACTED\PO_Extracted_Data.xlsx">
             <ui:ReadRange.Range>
               <InArgument x:TypeArguments="x:String">
                 <Literal x:TypeArguments="x:String" Value="" />
@@ -505,11 +545,6 @@
           </ui:ReadRange>
         </Sequence>
       </ui:CommentOut.Body>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsPinned">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
     </ui:CommentOut>
     <ui:ReadRange WorkbookPathResource="{x:Null}" AddHeaders="True" DataTable="[details]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="624,120" sap2010:WorkflowViewState.IdRef="ReadRange_4" SheetName="Sheet1" WorkbookPath="C:\Users\User\Desktop\ISP_PO_EXTRACTED\Book1.xlsx">
       <ui:ReadRange.Range>
@@ -523,12 +558,83 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ReadRange>
-    <Assign sap:VirtualizedContainerService.HintSize="624,114" sap2010:WorkflowViewState.IdRef="Assign_28">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="624,57" sap2010:WorkflowViewState.IdRef="CommentOut_8">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="468,165" sap2010:WorkflowViewState.IdRef="Sequence_103">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_28">
+            <Assign.To>
+              <OutArgument x:TypeArguments="sd:DataRow">[matchedRow]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="sd:DataRow">[(From row In details.AsEnumerable() Where row(0).ToString.Trim.ToLower = plantName.Trim.ToLower Select row).FirstOrDefault()]</InArgument>
+            </Assign.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Assign>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="624,57" sap2010:WorkflowViewState.IdRef="CommentOut_9">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_104">
+          <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="624,117" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[details.Columns.Cast(Of DataColumn).Where(Function(col) col.ColumnName.ToLower.Contains(&quot;shipping address&quot;) OrElse col.ColumnName.ToLower.Contains(&quot;Shipping Address&quot;) OrElse col.ColumnName.ToLower.Contains(&quot;ship to&quot;) OrElse col.ColumnName.ToLower.Contains(&quot;delivery address&quot;)).Select(Function(col) col.ColumnName).FirstOrDefault()]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:MessageBox>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="624,57" sap2010:WorkflowViewState.IdRef="CommentOut_10">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_105">
+          <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="624,117" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[details.Columns.Cast(Of DataColumn).Where(Function(col) col.ColumnName.ToLower.Contains(&quot;billing address&quot;) OrElse col.ColumnName.ToLower.Contains(&quot;bill address&quot;) OrElse col.ColumnName.ToLower.Contains(&quot;bill to&quot;) OrElse col.ColumnName.ToLower.Contains(&quot;invoice address&quot;)).Select(Function(col) col.ColumnName).FirstOrDefault()]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:MessageBox>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="624,57" sap2010:WorkflowViewState.IdRef="CommentOut_11">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap2010:WorkflowViewState.IdRef="Sequence_106">
+          <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="624,117" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[details.Columns.Cast(Of DataColumn).Where(Function(col) col.ColumnName.ToLower.Contains(&quot;client gstin&quot;) OrElse col.ColumnName.ToLower.Contains(&quot;gstin client&quot;) OrElse col.ColumnName.ToLower.Contains(&quot;customer gstin&quot;) OrElse col.ColumnName.ToLower.Contains(&quot;gstin&quot;)).Select(Function(col) col.ColumnName).FirstOrDefault()]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:MessageBox>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <Assign sap:VirtualizedContainerService.HintSize="624,114" sap2010:WorkflowViewState.IdRef="Assign_45">
       <Assign.To>
-        <OutArgument x:TypeArguments="sd:DataRow">[matchedRow]</OutArgument>
+        <OutArgument x:TypeArguments="x:String">[ClientGSTIN]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="sd:DataRow">[(From row In details.AsEnumerable() Where row(0).ToString.Trim.ToLower = plantName.Trim.ToLower Select row).FirstOrDefault()]</InArgument>
+        <InArgument x:TypeArguments="x:String">[details.AsEnumerable().Where(Function(row) row("plantName").ToString().Equals(plantName, StringComparison.OrdinalIgnoreCase)).Select(Function(row) row(details.Columns.Cast(Of DataColumn)().Where(Function(col) col.ColumnName.ToLower().Contains("client gstin") OrElse col.ColumnName.ToLower().Contains("gstin client") OrElse col.ColumnName.ToLower().Contains("customer gstin") OrElse col.ColumnName.ToLower().Contains("gstin")).Select(Function(col) col.ColumnName).FirstOrDefault()).ToString()).FirstOrDefault()]</InArgument>
       </Assign.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -536,21 +642,33 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="624,117" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[matchedRow(&quot;Billing Address&quot;).ToString()]">
+    <Assign sap:VirtualizedContainerService.HintSize="624,114" sap2010:WorkflowViewState.IdRef="Assign_46">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[ShippingAddress]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[details.AsEnumerable().Where(Function(row) row("plantName").ToString.Equals(plantName, StringComparison.OrdinalIgnoreCase)).Select(Function(row) row(details.Columns.Cast(Of DataColumn)().Where(Function(col) col.ColumnName.ToLower().Contains("shipping address") OrElse col.ColumnName.ToLower().Contains("bill address") OrElse col.ColumnName.ToLower().Contains("bill to") OrElse col.ColumnName.ToLower().Contains("invoice address")).Select(Function(col) col.ColumnName).FirstOrDefault()).ToString()).FirstOrDefault()]</InArgument>
+      </Assign.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsPinned">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-    </ui:MessageBox>
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="624,117" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[matchedRow(&quot;Shipping Address&quot;).ToString()]">
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="624,114" sap2010:WorkflowViewState.IdRef="Assign_47">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[BillingAddress]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[details.AsEnumerable().Where(Function(row) row("plantName").ToString().Equals(plantName, StringComparison.OrdinalIgnoreCase)).Select(Function(row) row(details.Columns.Cast(Of DataColumn)().Where(Function(col) col.ColumnName.ToLower().Contains("billing address") OrElse col.ColumnName.ToLower().Contains("bill address") OrElse col.ColumnName.ToLower().Contains("bill to") OrElse col.ColumnName.ToLower().Contains("invoice address")).Select(Function(col) col.ColumnName).FirstOrDefault()).ToString()).FirstOrDefault()]</InArgument>
+      </Assign.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsPinned">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-    </ui:MessageBox>
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="624,117" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[matchedRow(&quot;Client GSTIN&quot;).ToString()]">
+    </Assign>
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="624,117" sap2010:WorkflowViewState.IdRef="MessageBox_9" Text="[ClientGSTIN+&quot; &quot;+ShippingAddress+&quot; &quot;+BillingAddress]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsPinned">True</x:Boolean>
@@ -588,7 +706,7 @@
         <OutArgument x:TypeArguments="x:String">[shortDescColumn]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[itemDetails.Columns.Cast(Of DataColumn).Where(Function(col) col.ColumnName.ToLower.Contains("description") AndAlso Not col.ColumnName.ToLower.Contains("short")).Select(Function(col) col.ColumnName).FirstOrDefault()]</InArgument>
+        <InArgument x:TypeArguments="x:String">[itemDetails.Columns.Cast(Of DataColumn).Where(Function(col) col.ColumnName.ToLower.Contains("material desc") OrElse col.ColumnName.ToLower.Contains("specification") OrElse col.ColumnName.ToLower.Contains("material_number") OrElse col.ColumnName.ToLower.Contains("description")).Select(Function(col) col.ColumnName).FirstOrDefault()]</InArgument>
       </Assign.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -596,6 +714,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="624,117" sap2010:WorkflowViewState.IdRef="MessageBox_12" Text="[shortDescColumn]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:MessageBox>
     <Assign sap:VirtualizedContainerService.HintSize="624,114" sap2010:WorkflowViewState.IdRef="Assign_32">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[qtyColumn]</OutArgument>
@@ -614,7 +739,7 @@
         <OutArgument x:TypeArguments="x:String">[uomColumn]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[itemDetails.Columns.Cast(Of DataColumn).Where(Function(col) col.ColumnName.ToLower.Contains("uom") OrElse col.ColumnName.ToLower.Contains("unit") OrElse col.ColumnName.ToLower.Contains("unit of measurement")).Select(Function(col) col.ColumnName).FirstOrDefault()]</InArgument>
+        <InArgument x:TypeArguments="x:String">[itemDetails.Columns.Cast(Of DataColumn).Where(Function(col) col.ColumnName.ToLower.Contains("measurement") OrElse col.ColumnName.ToLower.Contains("uom") OrElse col.ColumnName.ToLower.Contains("unit of measurement")).Select(Function(col) col.ColumnName).FirstOrDefault()]</InArgument>
       </Assign.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -622,6 +747,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="624,117" sap2010:WorkflowViewState.IdRef="MessageBox_13" Text="[uomColumn]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:MessageBox>
     <Assign sap:VirtualizedContainerService.HintSize="624,114" sap2010:WorkflowViewState.IdRef="Assign_34">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[rateColumn]</OutArgument>
@@ -635,6 +767,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="624,117" sap2010:WorkflowViewState.IdRef="MessageBox_14" Text="[rateColumn]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:MessageBox>
     <Assign sap:VirtualizedContainerService.HintSize="624,114" sap2010:WorkflowViewState.IdRef="Assign_35">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[freightColumn]</OutArgument>
@@ -743,9 +882,9 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <ui:InterruptibleWhile Condition="[startIndex&lt;totalRows]" CurrentIndex="[whileIndex]" DisplayName="While" sap:VirtualizedContainerService.HintSize="624,25807" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1" MaxIterations="20">
+    <ui:InterruptibleWhile Condition="[startIndex&lt;totalRows]" CurrentIndex="[whileIndex]" DisplayName="While" sap:VirtualizedContainerService.HintSize="624,26499" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1" MaxIterations="20">
       <ui:InterruptibleWhile.Body>
-        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="622,25677" sap2010:WorkflowViewState.IdRef="Sequence_29">
+        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="622,26369" sap2010:WorkflowViewState.IdRef="Sequence_29">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -765,13 +904,13 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </Assign>
-          <uix:NApplicationCard DisplayName="Browser" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="588,25398" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" ScopeGuid="a937e88a-1c30-412c-abd9-3d80f181e978">
+          <uix:NApplicationCard DisplayName="Browser" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="588,26090" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" ScopeGuid="a937e88a-1c30-412c-abd9-3d80f181e978">
             <uix:NApplicationCard.Body>
               <ActivityAction x:TypeArguments="x:Object">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="554,25099" sap2010:WorkflowViewState.IdRef="Sequence_51">
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="554,25791" sap2010:WorkflowViewState.IdRef="Sequence_51">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -802,6 +941,7 @@
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:TypeInto>
@@ -857,7 +997,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:SendHotkey>
-                  <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'item  D13'" sap:VirtualizedContainerService.HintSize="520,187" sap2010:WorkflowViewState.IdRef="TypeInto_61" Text="[&quot;PO NO: &quot; &amp; poDetails.Rows(0)(poNumberColumn).ToString.Trim &amp; &quot; PO Dated: &quot; &amp; poDetails.Rows(0)(poDateColumn).ToString.Trim]">
+                  <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'item  D13'" sap:VirtualizedContainerService.HintSize="520,187" sap2010:WorkflowViewState.IdRef="TypeInto_61" Text="[&quot;PO Number: &quot; + poNumberValue +&quot; &quot;+ &quot;PO Date: &quot; + poDateValue]">
                     <ui:TypeInto.Target>
                       <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="84101224-04f5-485a-875f-e03e671137b5" InformativeScreenshot="a559c28b8c5fab537ec5165e457a2a08" Selector="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='D13' cls='XLSpreadsheetCell' name='D13' tableRow='13' /&gt;">
                         <ui:Target.TimeoutMS>
@@ -984,7 +1124,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </Assign>
-                  <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each item" sap:VirtualizedContainerService.HintSize="520,852" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[matchedRow(&quot;Shipping Address&quot;).ToString().Split(vbLf)]">
+                  <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each item" sap:VirtualizedContainerService.HintSize="520,852" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[ShippingAddress.Split(vbLf)]">
                     <ui:ForEach.Body>
                       <ActivityAction x:TypeArguments="x:String">
                         <ActivityAction.Argument>
@@ -1093,7 +1233,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:SendHotkey>
-                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'GSTIN 19AAACS7062F6Z6'" EmptyFieldMode="None" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="520,250" sap2010:WorkflowViewState.IdRef="NTypeInto_4" ScopeIdentifier="a937e88a-1c30-412c-abd9-3d80f181e978" Text="[&quot;GSTIN: &quot;+matchedRow(&quot;Client GSTIN&quot;).ToString()]" Version="V4">
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'GSTIN 19AAACS7062F6Z6'" EmptyFieldMode="None" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="520,250" sap2010:WorkflowViewState.IdRef="NTypeInto_4" ScopeIdentifier="a937e88a-1c30-412c-abd9-3d80f181e978" Text="[&quot;GSTIN: &quot;+ClientGSTIN]" Version="V4">
                     <uix:NTypeInto.Target>
                       <uix:TargetAnchorable CVScreenId="bd35883d-0ef6-484d-b2f0-9a163c69d828" ContentHash="hrgRrWTGq0GL8yqOfPxS_g" CvTextArea="434, 419, 112, 9" CvTextArgument="6STIM: 19AAACS7O62F6Z6" CvType="Text" DesignTimeRectangle="433, 419, 370, 12" DesignTimeScaleFactor="1" ElementType="Cell" FullSelectorArgument="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='J21' cls='XLSpreadsheetCell' name='J21' tableRow='21' /&gt;" FuzzySelectorArgument="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='J21' cls='XLSpreadsheetCell' name='J21' role='item' /&gt;" Guid="f459bd28-a620-4e50-82be-48a06e8cddf4" InformativeScreenshot="1330d2e4274f407f9c2cba07ebe17c53.png" Reference="UDvmrGuPi0y509F4-Wjpcg/JWjgsPz84UKuEFYNtdsVHQ" ScopeSelectorArgument="&lt;wnd app='excel.exe' cls='XLMAIN' title='IISCO BILL FORMAT.xlsm - Excel' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V5" Visibility="Interactive" />
                     </uix:NTypeInto.Target>
@@ -1121,7 +1261,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:SendHotkey>
-                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'GSTIN 19AAACS7062F6Z6(1)'" EmptyFieldMode="None" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="520,250" sap2010:WorkflowViewState.IdRef="NTypeInto_5" ScopeIdentifier="a937e88a-1c30-412c-abd9-3d80f181e978" Text="[&quot;GSTIN: &quot;+matchedRow(&quot;Client GSTIN&quot;).ToString()]" Version="V4">
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'GSTIN 19AAACS7062F6Z6(1)'" EmptyFieldMode="None" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="520,250" sap2010:WorkflowViewState.IdRef="NTypeInto_5" ScopeIdentifier="a937e88a-1c30-412c-abd9-3d80f181e978" Text="[&quot;GSTIN: &quot;+ClientGSTIN]" Version="V4">
                     <uix:NTypeInto.Target>
                       <uix:TargetAnchorable CVScreenId="bd6fce62-6330-4f2d-8634-beebf32fcca5" ContentHash="6bTLtl-boU6uAbqE37W1CA" CvTextArea="72, 419, 113, 9" CvTextArgument="6STIM: 19AAACS7062F6Z6" CvType="Text" DesignTimeRectangle="71, 419, 362, 12" DesignTimeScaleFactor="1" ElementType="Cell" FullSelectorArgument="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='D21' cls='XLSpreadsheetCell' name='D21' tableRow='21' /&gt;" FuzzySelectorArgument="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='D21' cls='XLSpreadsheetCell' name='D21' role='item' /&gt;" Guid="08fe64ab-d67e-4653-86ef-20a2565faf0f" InformativeScreenshot="79cd262add372b5bf1dbb964f5726279.png" Reference="UDvmrGuPi0y509F4-Wjpcg/gVYe2zz0gkyHKX4QzqTFww" ScopeSelectorArgument="&lt;wnd app='excel.exe' cls='XLMAIN' title='IISCO BILL FORMAT.xlsm - Excel' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V5" Visibility="Interactive" />
                     </uix:NTypeInto.Target>
@@ -1161,7 +1301,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </Assign>
-                  <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each item" sap:VirtualizedContainerService.HintSize="520,852" sap2010:WorkflowViewState.IdRef="ForEach`1_5" Values="[matchedRow(&quot;Billing Address&quot;).ToString().Split(vbLf)]">
+                  <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each item" sap:VirtualizedContainerService.HintSize="520,852" sap2010:WorkflowViewState.IdRef="ForEach`1_5" Values="[BillingAddress.Split(vbLf)]">
                     <ui:ForEach.Body>
                       <ActivityAction x:TypeArguments="x:String">
                         <ActivityAction.Argument>
@@ -1267,13 +1407,13 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:InputDialog>
-                  <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_Batch]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="520,11043" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
+                  <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_Batch]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="520,11735" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
                     <ui:ForEachRow.Body>
                       <ActivityAction x:TypeArguments="sd:DataRow">
                         <ActivityAction.Argument>
                           <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
                         </ActivityAction.Argument>
-                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="518,10863" sap2010:WorkflowViewState.IdRef="Sequence_50">
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="518,11555" sap2010:WorkflowViewState.IdRef="Sequence_50">
                           <Sequence.Variables>
                             <Variable x:TypeArguments="x:String" Name="arr2" />
                           </Sequence.Variables>
@@ -1437,7 +1577,7 @@
                                     </ui:CursorPosition>
                                   </ui:Click.CursorPosition>
                                   <ui:Click.Target>
-                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="bdc302a5-f65f-4512-ab15-94c9a21fb9ce" InformativeScreenshot="1bd6aec635378865a559ad58e3a60066" Selector="&lt;wnd app='excel.exe' cls='NUIDialog' title='Insert' /&gt;&lt;uia cls='NetUIGroupBox' name='Insert' /&gt;&lt;uia cls='NetUIRadioGroup' name=' ' /&gt;&lt;uia cls='NetUIRadioButton' name='Entire row' /&gt;">
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="bdc302a5-f65f-4512-ab15-94c9a21fb9ce" InformativeScreenshot="57f70c30b0c7c335fd3262e4a4f3309e" Selector="&lt;wnd app='excel.exe' cls='NUIDialog' title='Insert' /&gt;&lt;uia cls='NetUIGroupBox' name='Insert' /&gt;&lt;uia cls='NetUIRadioGroup' name=' ' /&gt;&lt;uia cls='NetUIRadioButton' name='Entire row' /&gt;">
                                       <ui:Target.TimeoutMS>
                                         <InArgument x:TypeArguments="x:Int32" />
                                       </ui:Target.TimeoutMS>
@@ -1464,12 +1604,7 @@
                                     </ui:CursorPosition>
                                   </ui:Click.CursorPosition>
                                   <ui:Click.Target>
-                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="91dcd8bd-d286-4fed-a8ee-b1ad310ccc72" InformativeScreenshot="d66a239b2dc4ec14205283beef1acdf9">
-                                      <ui:Target.Selector>
-                                        <InArgument x:TypeArguments="x:String">
-                                          <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_3">&lt;wnd app='excel.exe' cls='NUIDialog' title='Insert' /&gt;&lt;uia cls='NetUIButton' name='OK' /&gt;</Literal>
-                                        </InArgument>
-                                      </ui:Target.Selector>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="91dcd8bd-d286-4fed-a8ee-b1ad310ccc72" InformativeScreenshot="9ab55cec5b26dabef387bd65c0edf895" Selector="&lt;wnd app='excel.exe' cls='NUIDialog' title='Insert' /&gt;&lt;uia cls='NetUIButton' name='OK' /&gt;">
                                       <ui:Target.TimeoutMS>
                                         <InArgument x:TypeArguments="x:Int32" />
                                       </ui:Target.TimeoutMS>
@@ -1576,7 +1711,7 @@
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                           </ui:SendHotkey>
-                          <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each item" sap:VirtualizedContainerService.HintSize="484,368" sap2010:WorkflowViewState.IdRef="ForEach`1_6" Values="[CurrentRow(&quot;Material Specification&quot;).ToString().Split(vbLf)]">
+                          <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each item" sap:VirtualizedContainerService.HintSize="484,368" sap2010:WorkflowViewState.IdRef="ForEach`1_6" Values="[CurrentRow(shortDescColumn).ToString().Split(vbLf)]">
                             <ui:ForEach.Body>
                               <ActivityAction x:TypeArguments="x:String">
                                 <ActivityAction.Argument>
@@ -1616,7 +1751,7 @@
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                           </ui:ForEach>
-                          <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'item  L19'" sap:VirtualizedContainerService.HintSize="484,57" sap2010:WorkflowViewState.IdRef="TypeInto_54" Text="[&quot;[k(alt)][k(enter)]&quot; &amp; &quot;Material Code: &quot; &amp; CurrentRow(&quot;Material Code&quot;).ToString()]">
+                          <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'item  L19'" sap:VirtualizedContainerService.HintSize="484,187" sap2010:WorkflowViewState.IdRef="TypeInto_54" Text="[&quot;[k(alt)][k(enter)]&quot;  &amp; &quot;[k(alt)][k(enter)]&quot;  &amp; &quot;Material Code: &quot; &amp; CurrentRow(materialCodeColumn).ToString()]">
                             <ui:TypeInto.Target>
                               <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c2bfbcc4-f459-4326-8969-a4eda1b4db12" InformativeScreenshot="8329d3076817f92d522252747a0ba77a" Selector="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='E*' cls='XLSpreadsheetCell' name='E*' /&gt;">
                                 <ui:Target.TimeoutMS>
@@ -1629,8 +1764,8 @@
                             </ui:TypeInto.Target>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                           </ui:TypeInto>
@@ -1880,7 +2015,7 @@
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                           </ui:SendHotkey>
-                          <If Condition="[plantName=&quot;TATA STEEL LIMITED&quot;]" sap:VirtualizedContainerService.HintSize="484,614" sap2010:WorkflowViewState.IdRef="If_19">
+                          <If Condition="[switchPlant=&quot;TATA STEEL&quot;]" sap:VirtualizedContainerService.HintSize="484,614" sap2010:WorkflowViewState.IdRef="If_19">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsPinned">True</x:Boolean>
@@ -1894,7 +2029,7 @@
                                     <x:Boolean x:Key="IsPinned">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'item  I27'" sap:VirtualizedContainerService.HintSize="382,178" sap2010:WorkflowViewState.IdRef="TypeInto_64" Text="[((If(IsNumeric(CurrentRow(rateColumn)), CDbl(CurrentRow(rateColumn)), 0)) * (If(IsNumeric(CurrentRow(qtyColumn)), CDbl(CurrentRow(qtyColumn)), 0)) + &#xA;If(IsNumeric(CurrentRow(freightColumn)), CDbl(CurrentRow(freightColumn)), 0) + &#xA;If(IsNumeric(CurrentRow(forwardingColumn)), CDbl(CurrentRow(forwardingColumn)), 0) + &#xA;If(IsNumeric(CurrentRow(packingColumn)), CDbl(CurrentRow(packingColumn)), 0)).ToString()]">
+                                <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'item  I27'" sap:VirtualizedContainerService.HintSize="382,178" sap2010:WorkflowViewState.IdRef="TypeInto_64" Text="[((If(IsNumeric(CurrentRow(rateColumn)), CDbl(CurrentRow(rateColumn)), 0)) * (If(IsNumeric(CurrentRow(qtyColumn)), CDbl(CurrentRow(qtyColumn)), 0)) + &#xD;&#xA;If(IsNumeric(CurrentRow(freightColumn)), CDbl(CurrentRow(freightColumn)), 0) + &#xD;&#xA;If(IsNumeric(CurrentRow(forwardingColumn)), CDbl(CurrentRow(forwardingColumn)), 0) + &#xD;&#xA;If(IsNumeric(CurrentRow(packingColumn)), CDbl(CurrentRow(packingColumn)), 0)).ToString()]">
                                   <ui:TypeInto.Target>
                                     <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a2e48c7b-f1e4-480c-b364-37c99769d09b" InformativeScreenshot="35cd0d285b2094fd0880dd434dc26712" Selector="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='I*' cls='XLSpreadsheetCell' name='I*' /&gt;">
                                       <ui:Target.TimeoutMS>
@@ -1921,7 +2056,7 @@
                                     <x:Boolean x:Key="IsPinned">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'item  I27'" sap:VirtualizedContainerService.HintSize="382,178" sap2010:WorkflowViewState.IdRef="TypeInto_48" Text="[(CDbl(CurrentRow(&quot;Rate&quot;)) * CDbl(CurrentRow(&quot;Quantity&quot;))).ToString()]">
+                                <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'item  I27'" sap:VirtualizedContainerService.HintSize="382,178" sap2010:WorkflowViewState.IdRef="TypeInto_48" Text="[(CDbl(CurrentRow(rateColumn)) * CDbl(CurrentRow(qtyColumn))).ToString()]">
                                   <ui:TypeInto.Target>
                                     <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a2e48c7b-f1e4-480c-b364-37c99769d09b" InformativeScreenshot="35cd0d285b2094fd0880dd434dc26712" Selector="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='I*' cls='XLSpreadsheetCell' name='I*' /&gt;">
                                       <ui:Target.TimeoutMS>
@@ -2007,7 +2142,7 @@
                                     <x:Boolean x:Key="IsPinned">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <If Condition="[plantName=&quot;TATA STEEL LIMITED&quot;]" sap:VirtualizedContainerService.HintSize="418,614" sap2010:WorkflowViewState.IdRef="If_21">
+                                <If Condition="[switchPlant=&quot;TATA STEEL&quot;]" sap:VirtualizedContainerService.HintSize="418,614" sap2010:WorkflowViewState.IdRef="If_21">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsPinned">True</x:Boolean>
@@ -2021,7 +2156,7 @@
                                           <x:Boolean x:Key="IsPinned">True</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'item  K26'" sap:VirtualizedContainerService.HintSize="382,178" sap2010:WorkflowViewState.IdRef="TypeInto_73" Text="[((If(IsNumeric(CurrentRow(rateColumn)), CDbl(CurrentRow(rateColumn)), 0)) * (If(IsNumeric(CurrentRow(qtyColumn)), CDbl(CurrentRow(qtyColumn)), 0)) + &#xA;If(IsNumeric(CurrentRow(freightColumn)), CDbl(CurrentRow(freightColumn)), 0) + &#xA;If(IsNumeric(CurrentRow(forwardingColumn)), CDbl(CurrentRow(forwardingColumn)), 0) + &#xA;If(IsNumeric(CurrentRow(packingColumn)), CDbl(CurrentRow(packingColumn)), 0)).ToString()]">
+                                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'item  K26'" sap:VirtualizedContainerService.HintSize="382,178" sap2010:WorkflowViewState.IdRef="TypeInto_73" Text="[((If(IsNumeric(CurrentRow(rateColumn)), CDbl(CurrentRow(rateColumn)), 0)) * (If(IsNumeric(CurrentRow(qtyColumn)), CDbl(CurrentRow(qtyColumn)), 0)) + &#xD;&#xA;If(IsNumeric(CurrentRow(freightColumn)), CDbl(CurrentRow(freightColumn)), 0) + &#xD;&#xA;If(IsNumeric(CurrentRow(forwardingColumn)), CDbl(CurrentRow(forwardingColumn)), 0) + &#xD;&#xA;If(IsNumeric(CurrentRow(packingColumn)), CDbl(CurrentRow(packingColumn)), 0)).ToString()]">
                                         <ui:TypeInto.Target>
                                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a135977d-db60-4b06-bf87-6cd090e59aed" InformativeScreenshot="0be2a095664227a4f2dffb34ddfd047c" Selector="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='K*' cls='XLSpreadsheetCell' name='K*' /&gt;">
                                             <ui:Target.TimeoutMS>
@@ -2048,7 +2183,7 @@
                                           <x:Boolean x:Key="IsPinned">True</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'item  K26'" sap:VirtualizedContainerService.HintSize="382,178" sap2010:WorkflowViewState.IdRef="TypeInto_74" Text="[(CDbl(CurrentRow(&quot;Rate&quot;)) * CDbl(CurrentRow(&quot;Quantity&quot;))).ToString()]">
+                                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'item  K26'" sap:VirtualizedContainerService.HintSize="382,178" sap2010:WorkflowViewState.IdRef="TypeInto_74" Text="[(CDbl(CurrentRow(rateColumn)) * CDbl(CurrentRow(qtyColumn))).ToString()]">
                                         <ui:TypeInto.Target>
                                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a135977d-db60-4b06-bf87-6cd090e59aed" InformativeScreenshot="0be2a095664227a4f2dffb34ddfd047c" Selector="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='K*' cls='XLSpreadsheetCell' name='K*' /&gt;">
                                             <ui:Target.TimeoutMS>
@@ -2141,7 +2276,7 @@
                                     <x:Boolean x:Key="IsPinned">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <If Condition="[plantName=&quot;TATA STEEL LIMITED&quot;]" sap:VirtualizedContainerService.HintSize="418,605" sap2010:WorkflowViewState.IdRef="If_22">
+                                <If Condition="[switchPlant=&quot;TATA STEEL&quot;]" sap:VirtualizedContainerService.HintSize="418,605" sap2010:WorkflowViewState.IdRef="If_22">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsPinned">True</x:Boolean>
@@ -2155,7 +2290,7 @@
                                           <x:Boolean x:Key="IsPinned">True</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'item  K26'" sap:VirtualizedContainerService.HintSize="382,178" sap2010:WorkflowViewState.IdRef="TypeInto_75" Text="[((If(IsNumeric(CurrentRow(rateColumn)), CDbl(CurrentRow(rateColumn)), 0)) * (If(IsNumeric(CurrentRow(qtyColumn)), CDbl(CurrentRow(qtyColumn)), 0)) + &#xA;If(IsNumeric(CurrentRow(freightColumn)), CDbl(CurrentRow(freightColumn)), 0) + &#xA;If(IsNumeric(CurrentRow(forwardingColumn)), CDbl(CurrentRow(forwardingColumn)), 0) + &#xA;If(IsNumeric(CurrentRow(packingColumn)), CDbl(CurrentRow(packingColumn)), 0)).ToString()]">
+                                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'item  K26'" sap:VirtualizedContainerService.HintSize="382,178" sap2010:WorkflowViewState.IdRef="TypeInto_75" Text="[((If(IsNumeric(CurrentRow(rateColumn)), CDbl(CurrentRow(rateColumn)), 0)) * (If(IsNumeric(CurrentRow(qtyColumn)), CDbl(CurrentRow(qtyColumn)), 0)) + &#xD;&#xA;If(IsNumeric(CurrentRow(freightColumn)), CDbl(CurrentRow(freightColumn)), 0) + &#xD;&#xA;If(IsNumeric(CurrentRow(forwardingColumn)), CDbl(CurrentRow(forwardingColumn)), 0) + &#xD;&#xA;If(IsNumeric(CurrentRow(packingColumn)), CDbl(CurrentRow(packingColumn)), 0)).ToString()]">
                                         <ui:TypeInto.Target>
                                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a135977d-db60-4b06-bf87-6cd090e59aed" InformativeScreenshot="0be2a095664227a4f2dffb34ddfd047c" Selector="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='K*' cls='XLSpreadsheetCell' name='K*' /&gt;">
                                             <ui:Target.TimeoutMS>
@@ -2182,7 +2317,7 @@
                                           <x:Boolean x:Key="IsPinned">True</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'item  K26'" sap:VirtualizedContainerService.HintSize="382,178" sap2010:WorkflowViewState.IdRef="TypeInto_76" Text="[(CDbl(CurrentRow(&quot;Rate&quot;)) * CDbl(CurrentRow(&quot;Quantity&quot;))).ToString()]">
+                                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'item  K26'" sap:VirtualizedContainerService.HintSize="382,178" sap2010:WorkflowViewState.IdRef="TypeInto_76" Text="[(CDbl(CurrentRow(rateColumn)) * CDbl(CurrentRow(qtyColumn))).ToString()]">
                                         <ui:TypeInto.Target>
                                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a135977d-db60-4b06-bf87-6cd090e59aed" InformativeScreenshot="0be2a095664227a4f2dffb34ddfd047c" Selector="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='K*' cls='XLSpreadsheetCell' name='K*' /&gt;">
                                             <ui:Target.TimeoutMS>
@@ -2205,7 +2340,7 @@
                               </Sequence>
                             </If.Else>
                           </If>
-                          <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="484,57" sap2010:WorkflowViewState.IdRef="SendHotkey_57" Key="right" KeyModifiers="None" SpecialKey="True">
+                          <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="484,169" sap2010:WorkflowViewState.IdRef="SendHotkey_57" Key="right" KeyModifiers="None" SpecialKey="True">
                             <ui:SendHotkey.Target>
                               <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="1370b4f8-5a61-41b6-a5be-d63b0387fce7">
                                 <ui:Target.TimeoutMS>
@@ -2218,12 +2353,12 @@
                             </ui:SendHotkey.Target>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                           </ui:SendHotkey>
-                          <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="484,57" sap2010:WorkflowViewState.IdRef="SendHotkey_58" Key="right" KeyModifiers="None" SpecialKey="True">
+                          <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="484,169" sap2010:WorkflowViewState.IdRef="SendHotkey_58" Key="right" KeyModifiers="None" SpecialKey="True">
                             <ui:SendHotkey.Target>
                               <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="1370b4f8-5a61-41b6-a5be-d63b0387fce7">
                                 <ui:Target.TimeoutMS>
@@ -2236,12 +2371,12 @@
                             </ui:SendHotkey.Target>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                           </ui:SendHotkey>
-                          <If Condition="[(itemNumber+1) MOD 20 &lt;&gt; 1]" sap:VirtualizedContainerService.HintSize="484,2283" sap2010:WorkflowViewState.IdRef="If_16">
+                          <If Condition="[(itemNumber+1) MOD 20 &lt;&gt; 1]" sap:VirtualizedContainerService.HintSize="484,2621" sap2010:WorkflowViewState.IdRef="If_16">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsPinned">True</x:Boolean>
@@ -2249,27 +2384,45 @@
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                             <If.Then>
-                              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="452,1311" sap2010:WorkflowViewState.IdRef="Sequence_48">
+                              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="452,1480" sap2010:WorkflowViewState.IdRef="Sequence_48">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                     <x:Boolean x:Key="IsPinned">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <If Condition="[plantName=&quot;TATA STEEL LIMITED&quot;]" sap:VirtualizedContainerService.HintSize="418,614" sap2010:WorkflowViewState.IdRef="If_23">
+                                <If Condition="[switchPlant=&quot;TATA STEEL&quot;]" sap:VirtualizedContainerService.HintSize="418,952" sap2010:WorkflowViewState.IdRef="If_23">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsPinned">True</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
                                   <If.Then>
-                                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,238" sap2010:WorkflowViewState.IdRef="Sequence_88">
+                                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,407" sap2010:WorkflowViewState.IdRef="Sequence_88">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                           <x:Boolean x:Key="IsPinned">True</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
+                                      <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="382,169" sap2010:WorkflowViewState.IdRef="SendHotkey_100" Key="right" KeyModifiers="None" SpecialKey="True">
+                                        <ui:SendHotkey.Target>
+                                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="1370b4f8-5a61-41b6-a5be-d63b0387fce7">
+                                            <ui:Target.TimeoutMS>
+                                              <InArgument x:TypeArguments="x:Int32" />
+                                            </ui:Target.TimeoutMS>
+                                            <ui:Target.WaitForReady>
+                                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                                            </ui:Target.WaitForReady>
+                                          </ui:Target>
+                                        </ui:SendHotkey.Target>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:SendHotkey>
                                       <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'item  K26'" sap:VirtualizedContainerService.HintSize="382,178" sap2010:WorkflowViewState.IdRef="TypeInto_69" Text="[((If(IsNumeric(CurrentRow(rateColumn)), CDbl(CurrentRow(rateColumn)), 0)) * (If(IsNumeric(CurrentRow(qtyColumn)), CDbl(CurrentRow(qtyColumn)), 0)) + &#xA;If(IsNumeric(CurrentRow(freightColumn)), CDbl(CurrentRow(freightColumn)), 0) + &#xA;If(IsNumeric(CurrentRow(forwardingColumn)), CDbl(CurrentRow(forwardingColumn)), 0) + &#xA;If(IsNumeric(CurrentRow(packingColumn)), CDbl(CurrentRow(packingColumn)), 0)).ToString()]">
                                         <ui:TypeInto.Target>
                                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a135977d-db60-4b06-bf87-6cd090e59aed" InformativeScreenshot="0b43c464544f8e7ea60df70ab93a54ce" Selector="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='O*' cls='XLSpreadsheetCell' name='O*' /&gt;">
@@ -2290,14 +2443,32 @@
                                     </Sequence>
                                   </If.Then>
                                   <If.Else>
-                                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,238" sap2010:WorkflowViewState.IdRef="Sequence_89">
+                                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,407" sap2010:WorkflowViewState.IdRef="Sequence_89">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                           <x:Boolean x:Key="IsPinned">True</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'item  K26'" sap:VirtualizedContainerService.HintSize="382,178" sap2010:WorkflowViewState.IdRef="TypeInto_71" Text="[(CDbl(CurrentRow(&quot;Rate&quot;)) * CDbl(CurrentRow(&quot;Quantity&quot;))).ToString()]">
+                                      <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="382,169" sap2010:WorkflowViewState.IdRef="SendHotkey_101" Key="right" KeyModifiers="None" SpecialKey="True">
+                                        <ui:SendHotkey.Target>
+                                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="1370b4f8-5a61-41b6-a5be-d63b0387fce7">
+                                            <ui:Target.TimeoutMS>
+                                              <InArgument x:TypeArguments="x:Int32" />
+                                            </ui:Target.TimeoutMS>
+                                            <ui:Target.WaitForReady>
+                                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                                            </ui:Target.WaitForReady>
+                                          </ui:Target>
+                                        </ui:SendHotkey.Target>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:SendHotkey>
+                                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'item  K26'" sap:VirtualizedContainerService.HintSize="382,178" sap2010:WorkflowViewState.IdRef="TypeInto_71" Text="[(CDbl(CurrentRow(rateColumn)) * CDbl(CurrentRow(qtyColumn))).ToString()]">
                                         <ui:TypeInto.Target>
                                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a135977d-db60-4b06-bf87-6cd090e59aed" InformativeScreenshot="0b43c464544f8e7ea60df70ab93a54ce" Selector="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='O*' cls='XLSpreadsheetCell' name='O*' /&gt;">
                                             <ui:Target.TimeoutMS>
@@ -2317,23 +2488,6 @@
                                     </Sequence>
                                   </If.Else>
                                 </If>
-                                <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="418,169" sap2010:WorkflowViewState.IdRef="SendHotkey_59" Key="right" KeyModifiers="None" SpecialKey="True">
-                                  <ui:SendHotkey.Target>
-                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="555bc298-99ff-404d-8927-ed533d2d5a01">
-                                      <ui:Target.TimeoutMS>
-                                        <InArgument x:TypeArguments="x:Int32" />
-                                      </ui:Target.TimeoutMS>
-                                      <ui:Target.WaitForReady>
-                                        <InArgument x:TypeArguments="ui:WaitForReady" />
-                                      </ui:Target.WaitForReady>
-                                    </ui:Target>
-                                  </ui:SendHotkey.Target>
-                                  <sap:WorkflowViewStateService.ViewState>
-                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
-                                    </scg:Dictionary>
-                                  </sap:WorkflowViewStateService.ViewState>
-                                </ui:SendHotkey>
                                 <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="418,169" sap2010:WorkflowViewState.IdRef="SendHotkey_60" Key="up" KeyModifiers="None" SpecialKey="True">
                                   <ui:SendHotkey.Target>
                                     <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="555bc298-99ff-404d-8927-ed533d2d5a01">
@@ -2398,44 +2552,45 @@
                               </Sequence>
                             </If.Then>
                             <If.Else>
-                              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="452,834" sap2010:WorkflowViewState.IdRef="Sequence_49">
+                              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="452,1003" sap2010:WorkflowViewState.IdRef="Sequence_49">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                     <x:Boolean x:Key="IsPinned">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="418,169" sap2010:WorkflowViewState.IdRef="SendHotkey_62" Key="right" KeyModifiers="None" SpecialKey="True">
-                                  <ui:SendHotkey.Target>
-                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="4cadec43-09a0-45fa-a951-ab6b1611b5a9">
-                                      <ui:Target.TimeoutMS>
-                                        <InArgument x:TypeArguments="x:Int32" />
-                                      </ui:Target.TimeoutMS>
-                                      <ui:Target.WaitForReady>
-                                        <InArgument x:TypeArguments="ui:WaitForReady" />
-                                      </ui:Target.WaitForReady>
-                                    </ui:Target>
-                                  </ui:SendHotkey.Target>
-                                  <sap:WorkflowViewStateService.ViewState>
-                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
-                                    </scg:Dictionary>
-                                  </sap:WorkflowViewStateService.ViewState>
-                                </ui:SendHotkey>
-                                <If Condition="[plantName=&quot;TATA STEEL LIMITED&quot;]" sap:VirtualizedContainerService.HintSize="418,605" sap2010:WorkflowViewState.IdRef="If_25">
+                                <If Condition="[switchPlant=&quot;TATA STEEL&quot;]" sap:VirtualizedContainerService.HintSize="418,943" sap2010:WorkflowViewState.IdRef="If_25">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsPinned">True</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
                                   <If.Then>
-                                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,238" sap2010:WorkflowViewState.IdRef="Sequence_94">
+                                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,407" sap2010:WorkflowViewState.IdRef="Sequence_94">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                           <x:Boolean x:Key="IsPinned">True</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
+                                      <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="382,169" sap2010:WorkflowViewState.IdRef="SendHotkey_96" Key="right" KeyModifiers="None" SpecialKey="True">
+                                        <ui:SendHotkey.Target>
+                                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="1370b4f8-5a61-41b6-a5be-d63b0387fce7">
+                                            <ui:Target.TimeoutMS>
+                                              <InArgument x:TypeArguments="x:Int32" />
+                                            </ui:Target.TimeoutMS>
+                                            <ui:Target.WaitForReady>
+                                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                                            </ui:Target.WaitForReady>
+                                          </ui:Target>
+                                        </ui:SendHotkey.Target>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:SendHotkey>
                                       <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'item  K26'" sap:VirtualizedContainerService.HintSize="382,178" sap2010:WorkflowViewState.IdRef="TypeInto_77" Text="[((If(IsNumeric(CurrentRow(rateColumn)), CDbl(CurrentRow(rateColumn)), 0)) * (If(IsNumeric(CurrentRow(qtyColumn)), CDbl(CurrentRow(qtyColumn)), 0)) + &#xA;If(IsNumeric(CurrentRow(freightColumn)), CDbl(CurrentRow(freightColumn)), 0) + &#xA;If(IsNumeric(CurrentRow(forwardingColumn)), CDbl(CurrentRow(forwardingColumn)), 0) + &#xA;If(IsNumeric(CurrentRow(packingColumn)), CDbl(CurrentRow(packingColumn)), 0)).ToString()]">
                                         <ui:TypeInto.Target>
                                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a135977d-db60-4b06-bf87-6cd090e59aed" InformativeScreenshot="0b43c464544f8e7ea60df70ab93a54ce" Selector="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='O*' cls='XLSpreadsheetCell' name='O*' /&gt;">
@@ -2456,14 +2611,32 @@
                                     </Sequence>
                                   </If.Then>
                                   <If.Else>
-                                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,238" sap2010:WorkflowViewState.IdRef="Sequence_95">
+                                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,407" sap2010:WorkflowViewState.IdRef="Sequence_95">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                           <x:Boolean x:Key="IsPinned">True</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'item  K26'" sap:VirtualizedContainerService.HintSize="382,178" sap2010:WorkflowViewState.IdRef="TypeInto_78" Text="[(CDbl(CurrentRow(&quot;Rate&quot;)) * CDbl(CurrentRow(&quot;Quantity&quot;))).ToString()]">
+                                      <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="382,169" sap2010:WorkflowViewState.IdRef="SendHotkey_102" Key="right" KeyModifiers="None" SpecialKey="True">
+                                        <ui:SendHotkey.Target>
+                                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="1370b4f8-5a61-41b6-a5be-d63b0387fce7">
+                                            <ui:Target.TimeoutMS>
+                                              <InArgument x:TypeArguments="x:Int32" />
+                                            </ui:Target.TimeoutMS>
+                                            <ui:Target.WaitForReady>
+                                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                                            </ui:Target.WaitForReady>
+                                          </ui:Target>
+                                        </ui:SendHotkey.Target>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </ui:SendHotkey>
+                                      <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'item  K26'" sap:VirtualizedContainerService.HintSize="382,178" sap2010:WorkflowViewState.IdRef="TypeInto_78" Text="[(CDbl(CurrentRow(rateColumn)) * CDbl(CurrentRow(qtyColumn))).ToString()]">
                                         <ui:TypeInto.Target>
                                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a135977d-db60-4b06-bf87-6cd090e59aed" InformativeScreenshot="0b43c464544f8e7ea60df70ab93a54ce" Selector="&lt;uia automationid='Grid' cls='XLSpreadsheetGrid' name='Grid' /&gt;&lt;uia automationid='O*' cls='XLSpreadsheetCell' name='O*' /&gt;">
                                             <ui:Target.TimeoutMS>
